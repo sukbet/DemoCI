@@ -1,19 +1,19 @@
 version: build{build}
 
 branches:
-    except:
-        - project/travis
+  except:
+    - project/travis
 
 environment:
-    image: Visual Studio 2017
-    matrix:
+  image: Visual Studio 2017
+  matrix:
     - name: win32
       platform: amd64_x86
       qt: msvc2017
 
 build_script:
-    - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
-    - set QTDIR=C:\Qt\5.12.5\msvc2017_64
-    - set PATH=%PATH%;%QTDIR%\bin;
-    - qmake
-    - nmake & exit 0
+  - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+  - set QTDIR=C:\Qt\5.12.5\msvc2017_64
+  - set PATH=%PATH%;%QTDIR%\bin;
+  - qmake
+  - nmake & exit 0
