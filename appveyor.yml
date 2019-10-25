@@ -35,7 +35,7 @@ build_script:
   - nmake
 
 after_build:
-  - if "%APPVEYOR_REPO_TAG%"=="true" windeployqt.exe \bin\DemoCI.exe --qmldir %QTDIR%\qml
+  - if "%APPVEYOR_REPO_TAG%"=="true" windeployqt.exe bin\DemoCI.exe --qmldir %QTDIR%\qml
     # - windeployqt bin\DemoCI.exe --qmldir %QTDIR%\qml
 
 artifacts:
