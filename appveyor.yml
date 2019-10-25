@@ -1,4 +1,4 @@
-version: '1.0.{build}'
+version: build{build}
 
 branches:
   except:
@@ -16,17 +16,17 @@ environment:
       releaseName: DemoCI_qt512_vs2019_x64
 
 before_build:
-  - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2017" set msvc=msvc2017
-  - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2017" set vs=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat
-  - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2019" set msvc=msvc2019
-  - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2019" set vs=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat
-  - if "%platform%"=="x86" set QTDIR=C:\Qt\%qt%\%msvc%
-  - if "%platform%"=="x64" set QTDIR=C:\Qt\%qt%\%msvc%_64
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" set msvc=msvc2017
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" set vs=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2019" set msvc=msvc2019
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2019" set vs=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat
+  - if "%platform%" == "x86" set QTDIR=C:\Qt\%qt%\%msvc%
+  - if "%platform%" == "x64" set QTDIR=C:\Qt\%qt%\%msvc%_64
   - set PATH=%PATH%;%QTDIR%\bin;
-  - if "%platform%"=="x86" set vcvarsall=%vs%\vcvarsall.bat
-  - if "%platform%"=="x64" set vcvarsall=%vs%\vcvarsall.bat
-  - if "%platform%"=="x86" call "%vcvarsall%" x86
-  - if "%platform%"=="x64" call "%vcvarsall%" x64
+  - if "%platform%" == "x86" set vcvarsall=%vs%\vcvarsall.bat
+  - if "%platform%" == "x64" set vcvarsall=%vs%\vcvarsall.bat
+  - if "%platform%" == "x86" call "%vcvarsall%" x86
+  - if "%platform%" == "x64" call "%vcvarsall%" x64
 
 
 build_script:
@@ -34,7 +34,7 @@ build_script:
   - nmake
 
 after_build:
-  - if "%APPVEYOR_REPO_TAG%"=="TRUE" windeployqt bin\DemoCI.exe --qmldir %QTDIR%\qml
+  - if "%APPVEYOR_REPO_TAG%" == "TRUE" windeployqt bin\DemoCI.exe --qmldir %QTDIR%\qml
 
 artifacts:
   - path: bin
