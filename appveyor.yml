@@ -30,6 +30,7 @@ before_build:
 
 
 build_script:
+  - dir C:\Qt\
   - qmake
   - nmake
 
