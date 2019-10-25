@@ -5,6 +5,7 @@ branches:
         - project/travis
 
 environment:
+    image: Visual Studio 2017
     matrix:
     - name: win32
       platform: amd64_x86
